@@ -43,7 +43,7 @@
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://s.yimg.com/rc/yfc-theme/1.0.3/default-1fa4fdc3.css">
+        <link rel="stylesheet" href="https://s.yimg.com/rc/yfc-theme/1.0.3/default-4541629c.css">
 
         <!-- HTML5 Shiv -->
         <!--[if lt IE 9]>
@@ -330,23 +330,14 @@
             {/block:HideTitle}
             exposed-nav-wrapper content">
                         <nav class="nav-menu">
-                            <ul>
-
-                                {block:AskEnabled}
-                                <li><a href="/ask" class="ask">{AskLabel}</a></li>
-                                {/block:AskEnabled}
-
-                                {block:HasPages}
-                                {block:Pages}
-                                <li><a href="{URL}" class="page">{Label}</a></li>
-                                {/block:Pages}
-                                {/block:HasPages}
-
-                                <li><a href="/archive">{lang:Archive}</a></li>
-
-                                {block:SubmissionsEnabled}
-                                <li><a href="/submit" class="submit">{SubmitLabel}</a></li>
-                                {/block:SubmissionsEnabled}
+                            <ul class="yfc-pages">{block:AskEnabled}
+                            <li><a href="/ask" class="ask">{AskLabel}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:AskEnabled}
+                            {block:HasPages}
+                            {block:Pages}
+                            <li><a href="{URL}" class="page">{Label}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:Pages}
+                            {/block:HasPages}
+                            <li><a href="/archive">{lang:Archive}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{block:SubmissionsEnabled}
+                            <li><a href="/submit" class="submit">{SubmitLabel}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:SubmissionsEnabled}
                             </ul>
                         </nav>
                     </div>
@@ -362,7 +353,7 @@
             {/block:SearchPage}
 
             <div class="page-content">
-              <section id="posts" class="left-column clearfix {block:HideTitle}
+              <section id="posts" class="yfc-col left-column clearfix {block:HideTitle}
                {block:HideDescription}
                no-title-desc {/block:HideDescription}
                {/block:HideTitle}
@@ -628,7 +619,7 @@
                       {/block:Posts}
                   </div>
               </section>
-              <section class="right-column">
+              <section class="yfc-col right-column">
                   <h4 class="M-0">About the Author</h4>
                   <p class="small-text">{description}</p>
                       {block:IfCustomAdImage}
@@ -653,29 +644,39 @@
             <div class="d-ib va-m">
                 <h2 class="M-0 tt-cap Lh-1">{Title}</h2>
                 <small><h6 class="M-0 Lh-1 contributor-badge"></h6></small>
-            </div>
-            <ul class="navSocial">
-                {block:IfTwitterUsername}
-                <li><a href="https://twitter.com/{text:Twitter Username}">
-                  <span class="icon miab-social-twitter-light"></span>
-                </a></li>
-                {/block:IfTwitterUsername}
-                {block:IfFacebookPageUsername}
-                <li><a href="https://facebook.com/{text:Facebook Page Username}">
-                  <span class="icon miab-social-facebook-light"></span>
-                </a></li>
-                {/block:IfFacebookPageUsername}
-                {block:IfInstagramUsername}
-                <li><a href="https://instagram.com/{text:Instagram Username}">
-                  <span class="icon miab-social-instagram-light"></span>
-                </a></li>
-                {/block:IfInstagramUsername}
-                {block:IfPinterestUsername}
-                <li><a href="https://pinterest.com/{text:Pinterest Username}">
-                  <span class="icon miab-social-pinterest-light"></span>
-                </a></li>
-                {/block:IfPinterestUsername}
-            </ul></div>
+            </div>{block:IfNotCollapseNavigation}
+        <nav class="nav-menu closed"><ul class="yfc-pages">{block:AskEnabled}
+        <li><a href="/ask" class="ask">{AskLabel}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:AskEnabled}
+        {block:HasPages}
+        {block:Pages}
+        <li><a href="{URL}" class="page">{Label}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:Pages}
+        {/block:HasPages}
+        <li><a href="/archive">{lang:Archive}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{block:SubmissionsEnabled}
+        <li><a href="/submit" class="submit">{SubmitLabel}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:SubmissionsEnabled}
+        </ul>
+        </nav>{/block:IfNotCollapseNavigation}
+        <ul class="navSocial">
+            {block:IfTwitterUsername}
+            <li><a href="https://twitter.com/{text:Twitter Username}">
+              <span class="icon miab-social-twitter-light"></span>
+            </a></li>
+            {/block:IfTwitterUsername}
+            {block:IfFacebookPageUsername}
+            <li><a href="https://facebook.com/{text:Facebook Page Username}">
+              <span class="icon miab-social-facebook-light"></span>
+            </a></li>
+            {/block:IfFacebookPageUsername}
+            {block:IfInstagramUsername}
+            <li><a href="https://instagram.com/{text:Instagram Username}">
+              <span class="icon miab-social-instagram-light"></span>
+            </a></li>
+            {/block:IfInstagramUsername}
+            {block:IfPinterestUsername}
+            <li><a href="https://pinterest.com/{text:Pinterest Username}">
+              <span class="icon miab-social-pinterest-light"></span>
+            </a></li>
+            {/block:IfPinterestUsername}
+        </ul></div>
 
         <script>
             var Optica = {};
@@ -699,7 +700,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="https://s.yimg.com/rc/yfctheme/contributors.js"></script>
         <script>!window.jQuery && document.write(unescape('%3Cscript src="http://static.tumblr.com/vr9xgox/sBgmmjhyw/jquery-1.9.1.min.js"%3E%3C/script%3E'));</script>
-        <script src="https://s.yimg.com/rc/yfc-theme/1.0.3/main-5b76513c.js"></script>
+        <script src="https://s.yimg.com/rc/yfc-theme/1.0.3/main-63fc8bf2.js"></script>
 
         {block:IfGoogleAnalyticsID}
         <script>
