@@ -25,13 +25,15 @@
         <meta name="if:Endless scrolling" content="1">
         <meta name="image:Custom Splash" content="">
         <meta name="select:Splash Header" content="http://static.tumblr.com/wjohmzo/LAunfaw8p/nystockexchange2.png"title="New York">
-        <meta name="select:Splash Header" content="http://static.tumblr.com/wjohmzo/PChney8zg/london_city.jpg"title="London">
-        <meta name="select:Splash Header" content="http://static.tumblr.com/wjohmzo/O8vneyaz2/hongkong.jpg"title="Hong Kong">
-        <meta name="select:Splash Header" content="http://static.tumblr.com/wjohmzo/dKlney9wa/japan.jpg"title="Tokyo">
+        <meta name="select:Splash Header" content="http://static.tumblr.com/wjohmzo/8olnfd3v6/london_skyline.jpg"title="London">
         <meta name="image:Custom Ad" content="">
         <meta name="text:Custom Ad Link" content="">
         <meta name="text:Disqus shortname" content="">
         <meta name="text:Google analytics ID" content="">
+        <meta name="text:Twitter Username" content="">
+        <meta name="text:Facebook Page Username" content="">
+        <meta name="text:Instagram Username" content="">
+        <meta name="text:Pinterest Username" content="">
         {/block:Hidden}
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +43,7 @@
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://s.yimg.com/rc/isomr/1.0.2/default-2d8d2084.css">
+        <link rel="stylesheet" href="https://s.yimg.com/rc/isomr/1.0.2/default-1fa4fdc3.css">
 
         <!-- HTML5 Shiv -->
         <!--[if lt IE 9]>
@@ -283,7 +285,6 @@
                     <div class="header-image-wrapper {block:NoStretchHeaderImage}
              contain {/block:NoStretchHeaderImage}
             ">
-                        <div id="header-quotes"></div>
                         <a href="/" class="header-image {block:IfSlidingHeader}
              parallax {/block:IfSlidingHeader}
              {block:StretchHeaderImage}
@@ -653,7 +654,28 @@
                 <h2 class="M-0 tt-cap Lh-1">{Title}</h2>
                 <small><h6 class="M-0 Lh-1 contributor-badge"></h6></small>
             </div>
-        </div>
+            <ul class="navSocial">
+                {block:IfTwitterUsername}
+                <li><a href="https://twitter.com/{text:Twitter Username}">
+                  <span class="icon miab-social-twitter-light"></span>
+                </a></li>
+                {/block:IfTwitterUsername}
+                {block:IfFacebookPageUsername}
+                <li><a href="https://facebook.com/{text:Facebook Page Username}">
+                  <span class="icon miab-social-facebook-light"></span>
+                </a></li>
+                {/block:IfFacebookPageUsername}
+                {block:IfInstagramUsername}
+                <li><a href="https://instagram.com/{text:Instagram Username}">
+                  <span class="icon miab-social-instagram-light"></span>
+                </a></li>
+                {/block:IfInstagramUsername}
+                {block:IfPinterestUsername}
+                <li><a href="https://pinterest.com/{text:Pinterest Username}">
+                  <span class="icon miab-social-pinterest-light"></span>
+                </a></li>
+                {/block:IfPinterestUsername}
+            </ul></div>
 
         <script>
             var Optica = {};
@@ -677,7 +699,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="https://s.yimg.com/rc/yfctheme/contributors.js"></script>
         <script>!window.jQuery && document.write(unescape('%3Cscript src="http://static.tumblr.com/vr9xgox/sBgmmjhyw/jquery-1.9.1.min.js"%3E%3C/script%3E'));</script>
-        <script src="https://s.yimg.com/rc/isomr/1.0.2/main-973776ce.js"></script>
+        <script src="https://s.yimg.com/rc/isomr/1.0.2/main-5b76513c.js"></script>
 
         {block:IfGoogleAnalyticsID}
         <script>
