@@ -38,7 +38,7 @@
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://s.yimg.com/rc/yfc-theme/1.0.4/default-c106719a.css">
+        <link rel="stylesheet" href="https://s.yimg.com/rc/yfc-theme/1.0.4/default-37336e27.css">
         <link rel="stylesheet" href="https://s.yimg.com/rc/mibicons/0.0.0/icon-fonts-cc645f4e.css">
 
         <!-- HTML5 Shiv -->
@@ -214,6 +214,42 @@
         </style>
         <script type="text/javascript">var _sf_startpt=(new Date()).getTime();</script>
         <script type="text/javascript" src="https://s.yimg.com/rc/yfc-theme/1.0.4/js/modernizr-custom-b2325aef.js"></script>
+            {block:IndexPage}
+            <script type="application/ld+json">
+              [{}{block:Posts},
+              {
+                "@context": "http://schema.org",
+                "@type": "NewsArticle",
+                "headline": "{block:Title}{Title}{/block:Title}",
+                "url": "{Permalink}",
+                "thumbnailUrl": "{block:Link}{block:Thumbnail}{Thumbnail}{/block:Thumbnail}{/block:Link}{block:Video}{block:VideoThumbnail}{VideoThumbnailURL}{/block:VideoThumbnail}{/block:Video}{block:Photo}{PhotoURL-500}{/block:Photo}",
+                "dateCreated": "{MonthNumber}/{DayOfMonth}/{Year}T{24HourWithZero}:{Minutes}:{Seconds}",
+                "articleSection": "{PostType}",
+                "creator": "{block:IfNotHideAuthor}{PostAuthorName}{/block:IfNotHideAuthor}{block:IfHideAuthor}{block:ContentSource}{SourceTitle}{/block:ContentSource}{/block:IfHideAuthor}"{block:HasTags},
+                "keywords": [""{block:Tags},"{URLSafeTag}"{/block:Tags}]
+                {/block:HasTags}
+              }
+              {/block:Posts}]
+            </script>
+            {/block:IndexPage}
+            {block:PermalinkPage}
+            <script type="application/ld+json">
+              {block:Posts}
+              {
+                "@context": "http://schema.org",
+                "@type": "NewsArticle",
+                "headline": "{block:Title}{Title}{/block:Title}",
+                "url": "{Permalink}",
+                "thumbnailUrl": "{block:Link}{block:Thumbnail}{Thumbnail}{/block:Thumbnail}{/block:Link}{block:Video}{block:VideoThumbnail}{VideoThumbnailURL}{/block:VideoThumbnail}{/block:Video}{block:Photo}{PhotoURL-500}{/block:Photo}",
+                "dateCreated": "{MonthNumber}/{DayOfMonth}/{Year}T{24HourWithZero}:{Minutes}:{Seconds}",
+                "articleSection": "{PostType}",
+                "creator": "{block:IfNotHideAuthor}{PostAuthorName}{/block:IfNotHideAuthor}{block:IfHideAuthor}{block:ContentSource}{SourceTitle}{/block:ContentSource}{/block:IfHideAuthor}"{block:HasTags},
+                "keywords": [""{block:Tags},"{URLSafeTag}"{/block:Tags}]
+                {/block:HasTags}
+              }
+              {/block:Posts}
+            </script>
+            {/block:PermalinkPage}
     </head>
     <body id="miab-p"
         data-urlencoded-name="{URLEncodedName}" class=" {block:IndexPage} index-page {/block:IndexPage} {block:PermalinkPage} permalink {/block:PermalinkPage} {block:SearchPage} search-page {block:NoSearchResults} no-results {/block:NoSearchResults} {/block:SearchPage} {block:NoStretchHeaderImage} contain-header-image {/block:NoStretchHeaderImage}">
@@ -441,7 +477,7 @@
                   {/block:IfAuthorContactEmail}
                   <p class="small-text M-0">{description}</p>
                   <ul class="yfc-social-follow">
-                      <li><a class="yfc-tumblr-follow" href="https://www.tumblr.com/follow/{Name}">+ Follow Author</a></li>
+                      <li><a class="yfc-tumblr-follow" href="https://www.tumblr.com/follow/{Name}">+ Follow on Tumblr</a></li>
                       {block:IfTwitterUsername}<li><a href="https://twitter.com/{text:Twitter Username}"><span class="icon miab-icon-social-twitter"></span></a></li>{/block:IfTwitterUsername}{block:IfFacebookPageUsername}<li><a href="https://facebook.com/{text:Facebook Page Username}"><span class="icon miab-icon-social-fb"></span></a></li>{/block:IfFacebookPageUsername}{block:IfInstagramUsername}<li><a href="https://instagram.com/{text:Instagram Username}"><span class="icon miab-icon-social-instagram"></span></a></li>{/block:IfInstagramUsername}{block:IfPinterestUsername}<li><a href="https://pinterest.com/{text:Pinterest Username}"><span class="icon miab-icon-social-pinterest"></span></a></li>{/block:IfPinterestUsername}{block:IfLinkedinUsername}<li><a href="https://www.linkedin.com/in/{text:Linkedin Username}"><span class="icon miab-icon-social-linkedin"></span></a></li>{/block:IfLinkedinUsername}</ul>
                       {block:IfCustomAdImage}        <div class='item Mt-2'>
                           <a href="{text:Custom Ad Link}"><img src="{image:Custom Ad}"/></a>
@@ -495,6 +531,9 @@
             </ul>
         </div>
 
+        <div id="parsely-root" style="display: none">
+            <span id="parsely-cfg" data-parsely-site="condenastholiday.com"></span>
+        </div>
         <script>
             var Optica = {};
             Optica.ENDLESS_SCROLLING = {block:IfEndlessScrolling}true{/block:IfEndlessScrolling}{block:IfNotEndlessScrolling}false{/block:IfNotEndlessScrolling};
@@ -527,6 +566,17 @@
             e.src='https://s.yimg.com/uq/syndication/yad.js';e.async=true;
             f.parentNode.insertBefore(e,f)}(window,document,'script','yad'));
             yad('d4b30d2d-96aa-302d-be32-53155189e38d');
+        </script>
+        <script>
+            (function(s, p, d) {
+              var h=d.location.protocol, i=p+"-"+s,
+                  e=d.getElementById(i), r=d.getElementById(p+"-root"),
+                  u=h==="https:"?"d1z2jf7jlzjs58.cloudfront.net"
+                  :"static."+p+".com";
+              if (e) return;
+              e = d.createElement(s); e.id = i; e.async = true;
+              e.src = h+"//"+u+"/p.js"; r.appendChild(e);
+            })("script", "parsely", document);
         </script>
         <script type='text/javascript'>
             var _sf_async_config={};
