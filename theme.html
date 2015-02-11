@@ -740,7 +740,7 @@
             var waitForRapidCount = 0;
             var waitForRapid = window.setInterval(function () {
                 // local dev box does not have YAHOO.i13n.Rapid
-                if ( ('undefined' === typeof YAHOO) || ('undefined' === typeof YAHOO.i13n) || ('undefined' === typeof YAHOO.i13n.Rapid)) {
+                if ( ('undefined' === typeof YAHOO) || ('undefined' === typeof YAHOO.i13n) ) {
                     waitForRapidCount += 1;
                     // continue to wait
                     if ('undefined' !== typeof console) {
