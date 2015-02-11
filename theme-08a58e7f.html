@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="lt-ie10 lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]><html class="lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html> <!--<![endif]-->
+    <head>
+        {MobileAppHeaders}
+        <meta charset="utf-8">
+        <title>{Title} {block:SearchPage} ({lang:Search results for SearchQuery}) {/block:SearchPage} {block:PermalinkPage} {block:PostSummary} — {PostSummary} {/block:PostSummary} {/block:PermalinkPage}</title>
+
+        {block:Description}    <meta name="description" content="{MetaDescription}">
+        {/block:Description}
+        {block:Hidden}    <meta name="if:Sliding header" content="1">
+        <meta name="if:Collapse navigation" content="0">
+        <meta name="if:Endless scrolling" content="1">
+        <meta name="if:Show Tagged Stocks List" content="1">
+        <meta name="text:Author Name" content="">
+        <meta name="text:Author Contact Email" content="">
+        <meta name="image:Custom Splash" content="">
+        <meta name="select:Splash Header" content="http://static.tumblr.com/wjohmzo/LAunfaw8p/nystockexchange2.png"title="New York">
+        <meta name="select:Splash Header" content="http://static.tumblr.com/apkdr63/IE4nfkd7z/london.jpg"title="London">
+        <meta name="select:Splash Header" content="http://static.tumblr.com/apkdr63/baEnfkd6u/chicago.jpg"title="Chicago">
+        <meta name="select:Splash Header" content="http://static.tumblr.com/apkdr63/rtxnfkd8u/san-francisco.jpg"title="San Francisco">
+        <meta name="image:Custom Ad" content="">
+        <meta name="text:Custom Ad Link" content="">
+        <meta name="text:Google analytics ID" content="">
+        <meta name="text:Twitter Username" content="">
+        <meta name="text:Facebook Page Username" content="">
+        <meta name="text:Instagram Username" content="">
+        <meta name="text:Pinterest Username" content="">
+        <meta name="text:Disqus Shortname" content="">
+        <meta name="text:Linkedin Username" content="">
+        {/block:Hidden}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://s.yimg.com/rc/yfc-theme/1.0.4/default-5342e3ba.css">
+        <link rel="stylesheet" href="https://s.yimg.com/rc/mibicons/0.0.0/icon-fonts-cc645f4e.css">
+
+        <style>
+            /* Colors */
+            body {
+                background: {BackgroundColor};
+            }
+
+            .description,
+            .search-header {
+                color: {TitleColor};
+            }
+
+            .h-line {
+                background: {TitleColor};
+            }
+
+            a {
+                color: {AccentColor};
+            }
+
+            #pagination a {
+                color: {AccentColor};
+            }
+
+            #pagination a.next:after {
+                border-left-color: {AccentColor};
+            }
+
+            #pagination a.previous:after {
+                border-right-color: {AccentColor};
+            }
+
+            .loader .loader-bar {
+                background-color: {TitleColor};
+            }
+
+            .link-wrapper h2 a {
+                background-color: {AccentColor};
+            }
+
+            .header-image.cover {
+              {block:IfCustomSplashImage}
+                background-image: url({image:Custom Splash});
+              {/block:IfCustomSplashImage}
+              {block:IfNotCustomSplashImage}
+                background-image: url({select:Splash Header});
+              {/block:IfNotCustomSplashImage}
+            }
+
+            .user-avatar {
+                background-color: {BackgroundColor};
+                border-color: {BackgroundColor};
+            }
+
+            .no-header-image .selector .bar-icon,
+            .contain-header-image .selector .bar-icon {
+                background: {AccentColor};
+            }
+
+            .no-header-image .search-only .selector .icon,
+            .contain-header-image .search-only .selector .icon {
+                color: {AccentColor};
+            }
+
+            /* Adjust menus for light accents on light backgrounds */
+            .light-on-light.no-header-image .selector .bar-icon,
+            .light-on-light.contain-header-image .selector .bar-icon {
+                background: #444;
+            }
+
+            .light-on-light.no-header-image .search-only .selector .icon,
+            .light-on-light.contain-header-image .search-only .selector .icon {
+                color: #444;
+            }
+
+            /* Adjust menus for dark accents on dark backgrounds */
+            .dark-on-dark.no-header-image .selector .bar-icon,
+            .dark-on-dark.contain-header-image .selector .bar-icon {
+                background: #fff;
+            }
+
+            .dark-on-dark.no-header-image .search-only .selector .icon,
+            .dark-on-dark.contain-header-image .search-only .selector .icon {
+                color: #fff;
+            }
+
+            .header-blurred .header-image {
+                filter: blur(5px);
+                filter: url(#blur-5); /* for firefox; has to be inline style */
+                filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='5');
+                -webkit-filter: blur(5px);
+                -moz-filter: blur(5px);
+                -ms-filter: blur(5px);
+                -webkit-filter: blur(5px);
+            }
+
+            @media screen and (max-width: 568px) {
+                .header-image.cover {
+                    {block:IfCustomSplashImage}
+                      background-image: url({image:Custom Splash});
+                    {/block:IfCustomSplashImage}
+                    {block:IfNotCustomSplashImage}
+                      background-image: url({select:Splash Header});
+                    {/block:IfNotCustomSplashImage}
+                    -webkit-background-size: cover;
+                    background-size: cover;
+                }
+                .nav-menu-bg,
+                .nav-menu-wrapper .nav-menu.active:before,
+                .nav-menu .pop-menu ul {
+                    background: {BackgroundColor};
+                }
+
+                .nav-menu.active .selector .bar-icon,
+                .below-header .selector .bar-icon {
+                    background: {AccentColor};
+                }
+
+                .nav-menu .pop-menu ul li a,
+                .below-header .search-only .selector .icon {
+                    color: {AccentColor};
+                }
+
+                /* Adjust menus for light accents on light backgrounds */
+                .light-on-light.below-header .nav-menu .selector .bar-icon,
+                .light-on-light.below-header .selector .bar-icon {
+                    background: #444;
+                }
+
+                .light-on-light .nav-menu .pop-menu ul li a,
+                .light-on-light.below-header .search-only .selector .icon {
+                    color: #444;
+                }
+
+                /* Adjust menus for dark accents on dark backgrounds */
+                .dark-on-dark .nav-menu .selector .bar-icon,
+                .dark-on-dark .below-header .selector .bar-icon {
+                    background: #fff;
+                }
+
+                .dark-on-dark .nav-menu .pop-menu ul li a,
+                .dark-on-dark.below-header .search-only .selector .icon {
+                    color: #fff;
+                }
+
+                .avatar-style-square .user-avatar {
+                    -wekbit-box-shadow: 0 0 0 3px {BackgroundColor};
+                    -moz-box-shadow: 0 0 0 3px {BackgroundColor};
+                    box-shadow: 0 0 0 3px {BackgroundColor};
+                }
+            }
+
+            /* Custom CSS */
+            {CustomCSS}
+        </style>
+
+        <!-- HTML5 Shiv -->
+        <!--[if lt IE 9]>
+            <script src="http://static.tumblr.com/hriofhd/Qj0m8pn7q/html5shiv.js"></script>
+        <![endif]-->
+
+        <script type="text/javascript">var _sf_startpt=(new Date()).getTime();</script>
+        <script type="text/javascript" src="https://s.yimg.com/rc/yfc-theme/1.0.4/js/modernizr-custom-b2325aef.js"></script>
+            {block:IndexPage}
+            <script type="application/ld+json">
+              [{}{block:Posts},
+              {
+                "@context": "http://schema.org",
+                "@type": "NewsArticle",
+                "headline": "{block:Title}{Title}{/block:Title}",
+                "url": "{Permalink}",
+                "thumbnailUrl": "{block:Link}{block:Thumbnail}{Thumbnail}{/block:Thumbnail}{/block:Link}{block:Video}{block:VideoThumbnail}{VideoThumbnailURL}{/block:VideoThumbnail}{/block:Video}{block:Photo}{PhotoURL-500}{/block:Photo}",
+                "dateCreated": "{MonthNumber}/{DayOfMonth}/{Year}T{24HourWithZero}:{Minutes}:{Seconds}",
+                "articleSection": "{PostType}",
+                "creator": "{block:IfNotHideAuthor}{PostAuthorName}{/block:IfNotHideAuthor}{block:IfHideAuthor}{block:ContentSource}{SourceTitle}{/block:ContentSource}{/block:IfHideAuthor}"{block:HasTags},
+                "keywords": [""{block:Tags},"{URLSafeTag}"{/block:Tags}]
+                {/block:HasTags}
+              }
+              {/block:Posts}]
+            </script>
+            {/block:IndexPage}
+            {block:PermalinkPage}
+            <script type="application/ld+json">
+              {block:Posts}
+              {
+                "@context": "http://schema.org",
+                "@type": "NewsArticle",
+                "headline": "{block:Title}{Title}{/block:Title}",
+                "url": "{Permalink}",
+                "thumbnailUrl": "{block:Link}{block:Thumbnail}{Thumbnail}{/block:Thumbnail}{/block:Link}{block:Video}{block:VideoThumbnail}{VideoThumbnailURL}{/block:VideoThumbnail}{/block:Video}{block:Photo}{PhotoURL-500}{/block:Photo}",
+                "dateCreated": "{MonthNumber}/{DayOfMonth}/{Year}T{24HourWithZero}:{Minutes}:{Seconds}",
+                "articleSection": "{PostType}",
+                "creator": "{block:IfNotHideAuthor}{PostAuthorName}{/block:IfNotHideAuthor}{block:IfHideAuthor}{block:ContentSource}{SourceTitle}{/block:ContentSource}{/block:IfHideAuthor}"{block:HasTags},
+                "keywords": [""{block:Tags},"{URLSafeTag}"{/block:Tags}]
+                {/block:HasTags}
+              }
+              {/block:Posts}
+            </script>
+            {/block:PermalinkPage}
+    </head>
+    <body id="miab-p"
+        data-urlencoded-name="{URLEncodedName}" class=" {block:IndexPage} index-page {/block:IndexPage} {block:PermalinkPage} permalink {/block:PermalinkPage} {block:SearchPage} search-page {block:NoSearchResults} no-results {/block:NoSearchResults} {/block:SearchPage} {block:NoStretchHeaderImage} contain-header-image {/block:NoStretchHeaderImage}">
+
+        <section id="page">
+            {block:IfCollapseNavigation}<div class="nav-menu-bg"></div>
+            {/block:IfCollapseNavigation}            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="z-index: -100; position:fixed; left:0; top:0; width:100%; height: 275px">
+                <filter id="blur-3">
+                    <fegaussianblur stddeviation="3">
+                </filter>
+                <filter id="blur-5">
+                    <fegaussianblur stddeviation="5">
+                </filter>
+                <filter id="blur-8">
+                    <fegaussianblur stddeviation="8">
+                </filter>
+            </svg>
+            <div class="header-wrapper {block:HideTitle} {block:HideDescription} no-title-desc {/block:HideDescription} {/block:HideTitle} {block:ShowAvatar} avatar-style-{AvatarShape} {/block:ShowAvatar}">
+
+                <header id="header">
+                    <div class="header-image-wrapper {block:NoStretchHeaderImage} contain {/block:NoStretchHeaderImage}">
+                        <a href="/" class="header-image {block:IfSlidingHeader} parallax {/block:IfSlidingHeader} {block:StretchHeaderImage} cover {/block:StretchHeaderImage} {block:NoStretchHeaderImage} contain {/block:NoStretchHeaderImage}"
+                            {block:IfCustomSplashImage}
+                              data-bg-image="{image:Custom Splash}"
+                            {/block:IfCustomSplashImage}
+                            {block:IfNotCustomSplashImage}
+                              data-bg-image="{select:Splash Header}"
+                            {/block:IfNotCustomSplashImage} >
+                        </a>
+                        <div class="loader-bg"></div>
+                        <div id="header-quotes"></div>
+                    </div>
+
+                    <div class="blog-title content">
+                        <figure class="avatar-wrapper {block:IndexPage} animate {/block:IndexPage}">
+
+                            <a href="/" style="background-image: url({PortraitURL-128})" class="user-avatar"><img src="{PortraitURL-128}" alt="" class="print-only invisible"></a>
+                        </figure>
+
+                        <div class="title-group {block:IndexPage} animate {/block:IndexPage}">
+
+                            {block:ShowTitle}                <h1><a href="/">{Title}</a></h1>
+                            {/block:ShowTitle}
+                            <h6 class="M-0 Mt-10 tt-u contributor-badge"></h6>
+                        </div>
+                    </div>
+
+                    {block:IfNotCollapseNavigation}        <div class="{block:HideTitle}{block:HideDescription}no-title-desc {/block:HideDescription}{/block:HideTitle}exposed-nav-wrapper content">
+                        <nav class="nav-menu">
+                            <ul class="yfc-pages">{block:AskEnabled}<li><a href="/ask" class="ask">{AskLabel}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:AskEnabled}<li><a href="/" class="page">Home&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{block:HasPages}{block:Pages}<li><a href="{URL}" class="page">{Label}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:Pages}{/block:HasPages}<li><a href="/archive">{lang:Archive}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{block:SubmissionsEnabled}<li><a href="/submit" class="submit">{SubmitLabel}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:SubmissionsEnabled}<li class="embedded-social-btns">
+                                    <ul class="nav-social">
+                                        {block:IfTwitterUsername}<li><a href="https://twitter.com/{text:Twitter Username}"><span class="icon miab-icon-social-twitter"></span></a></li>{/block:IfTwitterUsername}{block:IfFacebookPageUsername}<li><a href="https://facebook.com/{text:Facebook Page Username}"><span class="icon miab-icon-social-fb"></span></a></li>{/block:IfFacebookPageUsername}{block:IfInstagramUsername}<li><a href="https://instagram.com/{text:Instagram Username}"><span class="icon miab-icon-social-instagram"></span></a></li>{/block:IfInstagramUsername}{block:IfPinterestUsername}<li><a href="https://pinterest.com/{text:Pinterest Username}"><span class="icon miab-icon-social-pinterest"></span></a></li>{/block:IfPinterestUsername}{block:IfLinkedinUsername}<li><a href="https://www.linkedin.com/in/{text:Linkedin Username}"><span class="icon miab-icon-social-linkedin"></span></a></li>{/block:IfLinkedinUsername}</ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    {/block:IfNotCollapseNavigation}    </header>
+            </div>
+            {block:SearchPage}<div class="search-header content">
+                <h2>{lang:SearchResultCount results for SearchQuery}{block:NoSearchResults}{lang:Sorry no search results found}{/block:NoSearchResults}</h2>
+            </div>
+            {/block:SearchPage}
+            <div class="page-content clearfix">
+              <section class="yfc-col right-column">
+                  <h4 class="M-0">About {text:Author Name}</h4>
+                  {block:IfAuthorContactEmail}
+                  <a class="yfc-contact-me" href="mailto:{text:Author Contact Email}" title="{lang:Send me an email}"><i class="glyphicon glyphicon-envelope"></i></a>
+                  {/block:IfAuthorContactEmail}
+                  <p class="small-text M-0">{description}</p>
+                  <ul class="yfc-social-follow">
+                      <li><a class="yfc-tumblr-follow" href="https://www.tumblr.com/follow/{Name}">+ Follow on Tumblr</a></li>
+                      {block:IfTwitterUsername}<li><a href="https://twitter.com/{text:Twitter Username}"><span class="icon miab-icon-social-twitter"></span></a></li>{/block:IfTwitterUsername}{block:IfFacebookPageUsername}<li><a href="https://facebook.com/{text:Facebook Page Username}"><span class="icon miab-icon-social-fb"></span></a></li>{/block:IfFacebookPageUsername}{block:IfInstagramUsername}<li><a href="https://instagram.com/{text:Instagram Username}"><span class="icon miab-icon-social-instagram"></span></a></li>{/block:IfInstagramUsername}{block:IfPinterestUsername}<li><a href="https://pinterest.com/{text:Pinterest Username}"><span class="icon miab-icon-social-pinterest"></span></a></li>{/block:IfPinterestUsername}{block:IfLinkedinUsername}<li><a href="https://www.linkedin.com/in/{text:Linkedin Username}"><span class="icon miab-icon-social-linkedin"></span></a></li>{/block:IfLinkedinUsername}</ul>
+                      {block:IfCustomAdImage}        <div class='item Mt-2'>
+                          <a href="{text:Custom Ad Link}"><img src="{image:Custom Ad}"/></a>
+                      </div>
+                      {/block:IfCustomAdImage}          {block:IfShowTaggedStocksList}          {block:PermalinkPage}          <div id="vizify-watchlist" style="display:none;"><h4 class='Mb-0'>Tagged Stocks</h4></div>
+                        {/block:PermalinkPage}        {block:IndexPage}        <div id="yfc-recent-stocks" style="display:none;"><h4 class='Mb-0'>Recently Tagged Stocks</h4></div>
+                      {/block:IndexPage}          {/block:IfShowTaggedStocksList}</section>
+
+              <div id="posts" class="yfc-col left-column clearfix {block:HideTitle} {block:HideDescription} no-title-desc {/block:HideDescription} {/block:HideTitle}avatar-style-{AvatarShape} {block:IfNotCollapseNavigation} exposed-nav {/block:IfNotCollapseNavigation}">
+
+                  <div data-page-id="{CurrentPage}">
+                      {block:Posts}        <article class="d-b {PostType} {block:Photoset} photoset {/block:Photoset} {block:RebloggedFrom} reblogged {/block:RebloggedFrom} {block:Answer} answer {/block:Answer} {block:Date} not-page post-{PostID} {/block:Date} {block:PermalinkPage} exposed {/block:PermalinkPage} active" {block:Date}data-post-id="post_{PostID}"{/block:Date}>
+
+                          <div class="post-wrapper clearfix">
+                              <div {block:Date}id="post_{PostID}"{/block:Date} class="post">
+                                  <div class="post-inner">
+                                      <div class="post-hd clearfix">
+                                          <div class="post-hdl clearfix">{block:RebloggedFrom}<a class="reblog-link" href="{ReblogParentURL}"><i class="icon-reblog"></i>{ReblogParentName}</a>
+              <a class="follow-btn" href="https://www.tumblr.com/follow/{ReblogParentName}"><span>Follow</span></a>{/block:RebloggedFrom}{block:NotReblog}<a href="{Permalink}">{Name}</a>
+              <a class="follow-btn" href="https://www.tumblr.com/follow/{Name}"><span>Follow</span></a>{/block:NotReblog}</div>
+                                          <div class="post-hdr clearfix">{block:ContentSource}{lang:Source}: <a class="source-link" href="{SourceURL}">{SourceTitle}</a>
+              {/block:ContentSource}</div>
+                                      </div>
+
+                                      <div class="post-bd">
+                                          {block:Text}{block:Title}<h2><a href="{Permalink}">{Title}</a></h2>
+                                          {/block:Title}
+                                          {block:Body}<div class="body-text">{Body}</div>
+                                          {/block:Body}{/block:Text}
+                                          {block:Photo}<figure class="{block:HighRes}high-res{/block:HighRes} {block:Caption} with-caption {/block:Caption}" data-photo-width="{PhotoWidth-HighRes}">
+                                              <div class="photo-wrapper">
+                                                  <div class="photo-wrapper-inner">
+                                                      {LinkOpenTag}
+                                                      <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}">
+                                                      {LinkCloseTag}
+                                                  </div>
+                                              </div>
+
+                                              {block:Caption}<figcaption class="caption">{Caption}</figcaption>
+                                              {/block:Caption}</figure>
+                                          {/block:Photo}
+                                          {block:Photoset}<figure class="photoset {block:Caption}with-caption{/block:Caption}">
+                                              {Photoset}
+
+                                              {block:Caption}<figcaption class="caption">{Caption}</figcaption>
+                                              {/block:Caption}</figure>
+                                          {/block:Photoset}
+                                          {block:Quote}<blockquote class="{Length}">{Quote}</blockquote>
+
+                                          {block:Source}<div class="source">{Source}</div>
+                                          {/block:Source}{/block:Quote}
+                                          {block:Link}<div class="link-wrapper">
+                                              <h2>
+                                                  <a {Target} href="{URL}">
+                                                      <span class="link-title">{Name}</span>
+
+                                                      {block:Host}            <span class="link-host">{Host}</span>
+                                                      {/block:Host}        </a>
+                                              </h2>
+                                          </div>
+
+                                          {block:Description}<div class="caption">{Description}</div>
+                                          {/block:Description}{/block:Link}
+                                          {block:Chat}{block:Title}<h2><a href="{Permalink}">{Title}</a></h2>
+                                          {/block:Title}
+                                          <ul class="conversation">
+                                              {block:Lines}    <li class="chat-{Alt}">
+                                                  {block:Label}<span class="label">{Label}</span>{/block:Label}
+                                                  {Line}
+                                              </li>
+                                              {/block:Lines}</ul>
+                                          {/block:Chat}
+                                          {block:Audio}<div class="audio_container">
+                                              {block:AudioEmbed}{AudioEmbed color="white"}{/block:AudioEmbed}
+                                          </div>
+
+                                          {block:Caption}<div class="caption">{Caption}</div>
+                                          {/block:Caption}{/block:Audio}
+                                          {block:Video}<figure {block:Caption}class="with-caption"{/block:Caption}>
+                                              <div class="video-wrapper">{Video-700}</div>
+
+                                              {block:Caption}<figcaption class="caption">{Caption}</figcaption>
+                                              {/block:Caption}</figure>
+                                          {/block:Video}
+                                          {block:Answer}<div class="note-item note-item-asker">
+                                              <div class="text">
+                                                  <p class="asker"><strong>{Asker}</strong> asked:</p>
+                                                  <div class="asker-question">{Question}</div>
+                                              </div>
+                                              <div class="avatar">
+                                                  <img class="asker-avatar" src="{AskerPortraitURL-96}" alt="">
+                                              </div>
+                                          </div>
+
+                                          {block:Answerer}<div class="note-item note-item-answerer">
+                                              <div class="text">
+                                                  <p class="answerer"><strong>{Answerer}</strong> answered:</p>
+                                                  <div class="answerer-answer">{Answer}</div>
+                                              </div>
+                                              <div class="avatar">
+                                                  <img class="answerer-avatar" src="{AnswererPortraitURL-96}" alt="">
+                                              </div>
+                                          </div>
+                                          {/block:Answerer}
+                                          <div class="replies">{Replies}</div>
+                                          {/block:Answer}                        </div>
+                                      <a class="post-time td-n" href="{Permalink}" data-timestamp="{Timestamp}">
+                                          <span class="publish-time d-n">{FormattedTime}</span>
+                                          <span class="publish-date d-n">{FormattedTime}, {ShortMonth} {DayOfMonthWithZero} {Year}</span>
+                                      </a>
+                                      {block:IndexPage}<div class='expando-btn'>Read More...</div>{/block:IndexPage}
+                                      {block:HasTags}                        <div class="post-ft clearfix">
+                                          <div class="post-ftl clearfix"><ul class="post-tags">
+                  {block:Tags}    <li><a href="{TagURL}" class="tag">{Tag}</a></li>
+                  {/block:Tags}</ul>
+              </div>
+                                          <div class="post-ftr clearfix post-stock-ticker"></div>
+                                      </div>
+                                      {/block:HasTags}
+                                          {block:PermalinkPage}    {block:IfDisqusShortname}    <hr />
+                                          <div id="disqus_thread" class="disqus-wrapper"></div>
+                                          <script type="text/javascript">
+                                            var disqus_shortname = '{text:Disqus Shortname}';
+                                            var disqus_url = '{Permalink}';
+
+                                            (function() {
+                                             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                                             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                                             })();
+                                          </script>
+                                          {/block:IfDisqusShortname}    {/block:PermalinkPage}
+                                      <div class="post-ft last-child clearfix">
+                                          <div class="post-ftl"><a class="post-notes" href="{Permalink}#notes">{NoteCountWithLabel}</a>
+              </div>
+                                          <div class="post-ftr"><div class="post-controls">
+                  <ul>
+                      <li class="share-control">
+                          <nav class="pop">
+                              <a href="#" class="share selector icon-export"></a>
+                              <div class="pop-menu share-menu south" id="share_{PostID}">
+                                  <ul>
+                                      <li class="open-in-app"><a href="#" class="share-item open-in-app" data-post="{PostID}">Open in app</a></li>
+                                      <li class="yfc-caged"><a href="https://twitter.com/intent/tweet?text={URLEncodedTweetSummary}" class="share-item twitter" target="_blank">Tweet</a></li>
+                                      <li><a href="mailto:?subject={URLEncodedShareString}&amp;body={URLEncodedMailSummary}" class="share-item mail">Mail</a></li>
+                                      <li><a href="{Permalink}" class="share-item permalink">{lang:Permalink} <i class="icon-arrow_carrot_right"></i></a></li>
+                                  </ul>
+                              </div>
+                          </nav>
+                      </li>
+                      <li><a href="http://facebook.com/sharer.php?u={URLEncodedPermalink}&amp;t={URLEncodedTitle}" class="share-item facebook" target="_blank"><span class="icon miab-icon-social-fb"></span></a></li>
+                      <li class="yfc-uncaged"><a href="https://twitter.com/intent/tweet?text={URLEncodedTweetSummary}" class="share-item twitter" target="_blank"><span class="icon miab-icon-social-twitter"></span></a></li>
+                      <li class="reblog-control">{ReblogButton size="21" color="black"}</li>
+                      <li class="like-control">
+                          {LikeButton size="20" color="black"}
+                          <div class="custom-like"></div>
+                      </li>
+                  </ul>
+              </div>
+              </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              {block:PermalinkPage}
+                              {block:PostNotes}<section id="notes" class="notes-wrapper clearfix">{PostNotes-64}</section>
+                              {/block:PostNotes}
+
+                              {/block:PermalinkPage}            </div>
+                      </article>
+                      {/block:Posts}    </div>
+              </div>
+
+              {block:PermalinkPage}
+              <div class="YAD-d4b30d2d-96aa-302d-be32-53155189e38d"></div>
+
+              {/block:PermalinkPage}            </div>
+
+        </section>
+        <footer id="footer" class="content clearfix">
+            {block:IndexPage}    {block:Pagination}    <div id="pagination">
+                {block:PreviousPage}        <a href="{PreviousPage}" class="previous" data-current-page="{CurrentPage}" data-total-pages="{TotalPages}">{lang:Previous}<span class="bg"></span></a>
+                {/block:PreviousPage}
+                {block:NextPage}        <a href="{NextPage}" class="next" data-current-page="{CurrentPage}" data-total-pages="{TotalPages}">{lang:Next}<span class="bg"></span></a>
+                {/block:NextPage}
+                <div class="loader"><div class="loader-bar"></div><div class="loader-bar"></div><div class="loader-bar"></div></div>
+            </div>
+            {/block:Pagination}    {/block:IndexPage}</footer>
+        <div class="banner-badge avatar-style-{AvatarShape}">
+            <figure class="avatar-wrapper">
+                <a href="/" style="background-image: url({PortraitURL-128})" class="user-avatar"><img src="{PortraitURL-128}" alt="" class="print-only invisible"></a>
+            </figure>
+            <div class="d-ib va-m">
+                <h2 class="M-0 tt-cap Lh-1 blog-title">{Title}</h2>
+                <small><h6 class="M-0 Lh-1 tt-u contributor-badge">
+                    &nbsp;
+                </h6></small>
+            </div>{block:IfNotCollapseNavigation}<nav class="nav-menu closed"><ul class="yfc-pages">{block:AskEnabled}<li><a href="/ask" class="ask">{AskLabel}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:AskEnabled}<li><a href="/" class="page">Home&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{block:HasPages}{block:Pages}<li><a href="{URL}" class="page">{Label}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:Pages}{/block:HasPages}<li><a href="/archive">{lang:Archive}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{block:SubmissionsEnabled}<li><a href="/submit" class="submit">{SubmitLabel}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:SubmissionsEnabled}<li class="embedded-social-btns">
+                <ul class="nav-social">
+                    {block:IfTwitterUsername}<li><a href="https://twitter.com/{text:Twitter Username}"><span class="icon miab-icon-social-twitter"></span></a></li>{/block:IfTwitterUsername}{block:IfFacebookPageUsername}<li><a href="https://facebook.com/{text:Facebook Page Username}"><span class="icon miab-icon-social-fb"></span></a></li>{/block:IfFacebookPageUsername}{block:IfInstagramUsername}<li><a href="https://instagram.com/{text:Instagram Username}"><span class="icon miab-icon-social-instagram"></span></a></li>{/block:IfInstagramUsername}{block:IfPinterestUsername}<li><a href="https://pinterest.com/{text:Pinterest Username}"><span class="icon miab-icon-social-pinterest"></span></a></li>{/block:IfPinterestUsername}{block:IfLinkedinUsername}<li><a href="https://www.linkedin.com/in/{text:Linkedin Username}"><span class="icon miab-icon-social-linkedin"></span></a></li>{/block:IfLinkedinUsername}</ul>
+            </li>
+        </ul>
+        </nav>{/block:IfNotCollapseNavigation}<nav class="nav-social-wrapper"><ul class="nav-social">
+            {block:IfTwitterUsername}<li><a href="https://twitter.com/{text:Twitter Username}"><span class="icon miab-icon-social-twitter"></span></a></li>{/block:IfTwitterUsername}{block:IfFacebookPageUsername}<li><a href="https://facebook.com/{text:Facebook Page Username}"><span class="icon miab-icon-social-fb"></span></a></li>{/block:IfFacebookPageUsername}{block:IfInstagramUsername}<li><a href="https://instagram.com/{text:Instagram Username}"><span class="icon miab-icon-social-instagram"></span></a></li>{/block:IfInstagramUsername}{block:IfPinterestUsername}<li><a href="https://pinterest.com/{text:Pinterest Username}"><span class="icon miab-icon-social-pinterest"></span></a></li>{/block:IfPinterestUsername}{block:IfLinkedinUsername}<li><a href="https://www.linkedin.com/in/{text:Linkedin Username}"><span class="icon miab-icon-social-linkedin"></span></a></li>{/block:IfLinkedinUsername}</ul>
+        </nav>
+        </div>
+        <div class="small banner-badge avatar-style-{AvatarShape} closed">
+            <div class="d-ib va-m">
+                <span class="icon miab-icon-stack-menu"></span>
+                <span class="icon miab-icon-x"></span>
+            </div>
+            <ul class="yfc-pages">{block:AskEnabled}<li><a href="/ask" class="ask">{AskLabel}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:AskEnabled}<li><a href="/" class="page">Home&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{block:HasPages}{block:Pages}<li><a href="{URL}" class="page">{Label}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:Pages}{/block:HasPages}<li><a href="/archive">{lang:Archive}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{block:SubmissionsEnabled}<li><a href="/submit" class="submit">{SubmitLabel}&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></li>{/block:SubmissionsEnabled}<li class="embedded-social-btns">
+                    <ul class="nav-social">
+                        {block:IfTwitterUsername}<li><a href="https://twitter.com/{text:Twitter Username}"><span class="icon miab-icon-social-twitter"></span></a></li>{/block:IfTwitterUsername}{block:IfFacebookPageUsername}<li><a href="https://facebook.com/{text:Facebook Page Username}"><span class="icon miab-icon-social-fb"></span></a></li>{/block:IfFacebookPageUsername}{block:IfInstagramUsername}<li><a href="https://instagram.com/{text:Instagram Username}"><span class="icon miab-icon-social-instagram"></span></a></li>{/block:IfInstagramUsername}{block:IfPinterestUsername}<li><a href="https://pinterest.com/{text:Pinterest Username}"><span class="icon miab-icon-social-pinterest"></span></a></li>{/block:IfPinterestUsername}{block:IfLinkedinUsername}<li><a href="https://www.linkedin.com/in/{text:Linkedin Username}"><span class="icon miab-icon-social-linkedin"></span></a></li>{/block:IfLinkedinUsername}</ul>
+                </li>
+            </ul>
+        </div>
+
+        <div id="parsely-root" style="display: none">
+            <span id="parsely-cfg" data-parsely-site="condenastholiday.com"></span>
+        </div>
+        <script>
+            var Optica = {};
+            Optica.ENDLESS_SCROLLING = {block:IfEndlessScrolling}true{/block:IfEndlessScrolling}{block:IfNotEndlessScrolling}false{/block:IfNotEndlessScrolling};
+            Optica.LAYOUT = "regular";
+            Optica.GRID_LAYOUT = (Optica.LAYOUT === 'grid');
+            Optica.TITLE_COLOR = "{TitleColor}";
+            Optica.ACCENT_COLOR = "{AccentColor}";
+            Optica.BACKGROUND_COLOR = "{BackgroundColor}";
+            Optica.ENDLESS_NOTES_SCROLLING = true;
+            var YFC = window.YFC || {};
+        </script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.underscore.min.js"></script>
+        <script src="https://s.yimg.com/rc/YContributors/0.0.3/yfc_list.js"></script>
+        <script>!window.jQuery && document.write(unescape('%3Cscript src="http://static.tumblr.com/vr9xgox/sBgmmjhyw/jquery-1.9.1.min.js"%3E%3C/script%3E'));</script>
+        <script src="https://s.yimg.com/rc/yfc-theme/1.0.4/main-dca88099.js"></script>
+
+        {block:IfGoogleAnalyticsID}<script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', '{text:Google Analytics ID}', 'auto');
+            ga('send', 'pageview');
+        </script>
+        {/block:IfGoogleAnalyticsID}<script>
+            (function(a,b,c,d,e,f){a[d]||(a[d]=
+            function(){(a[d].q=a[d].q||[]).push([arguments,+new Date])});
+            e=b.createElement(c);f=b.getElementsByTagName(c)[0];
+            e.src='https://s.yimg.com/uq/syndication/yad.js';e.async=true;
+            f.parentNode.insertBefore(e,f)}(window,document,'script','yad'));
+            yad('d4b30d2d-96aa-302d-be32-53155189e38d');
+        </script>
+        <script>
+            (function(s, p, d) {
+              var h=d.location.protocol, i=p+"-"+s,
+                  e=d.getElementById(i), r=d.getElementById(p+"-root"),
+                  u=h==="https:"?"d1z2jf7jlzjs58.cloudfront.net"
+                  :"static."+p+".com";
+              if (e) return;
+              e = d.createElement(s); e.id = i; e.async = true;
+              e.src = h+"//"+u+"/p.js"; r.appendChild(e);
+            })("script", "parsely", document);
+        </script>
+        <script type='text/javascript'>
+            var _sf_async_config={};
+            var $posts = $('.post');
+            var authors = {};
+
+            $('.post').each(function (i) { //jshint ignore:line
+                var $post = $(this);
+                var author = $post.data('authorTitle');
+                var origAuthor = $('.original.author', $post).text();
+
+                if (author) {
+                    // ensures unique author list
+                    authors[author] = author;
+                }
+
+                if (origAuthor) {
+                    authors[origAuthor] = origAuthor;
+                }
+            });
+            _sf_async_config.sections = [];
+            _sf_async_config.authors = [];
+
+            for (var author in authors) {
+                if (authors.hasOwnProperty(author)) {
+                    _sf_async_config.authors.push(author);
+                }
+            }
+
+            /** CONFIGURATION START **/
+            _sf_async_config.uid = 54992;
+            _sf_async_config.domain = window.location.hostname;
+            _sf_async_config.useCanonical = true;
+            /** CONFIGURATION END **/
+            (function(){
+              function loadChartbeat() {
+                window._sf_endpt=(new Date()).getTime();
+                var e = document.createElement('script');
+                e.setAttribute('language', 'javascript');
+                e.setAttribute('type', 'text/javascript');
+                e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');
+                document.body.appendChild(e);
+              }
+              var oldonload = window.onload;
+              window.onload = (typeof window.onload != 'function') ?
+                 loadChartbeat : function() { oldonload(); loadChartbeat(); };
+            })();
+        </script>
+        <script type="text/javascript">
+        $(function () {
+            "use strict";
+
+            /* global YFC */
+            var gThemeObj = YFC; // global custom theme object
+            var yfcPerma = {};
+            var yfcPermaAuthor = '';
+            var yfcPermaType = '';
+            var yfcPermaPostId = '';
+            var yfcTag = '';
+            var yfcPostId = '';
+
+            if (gThemeObj) {
+                yfcPerma = gThemeObj.permalink;
+                yfcTag = !!gThemeObj.tag && gThemeObj.tag;
+            }
+
+            if (yfcPerma) {
+                if (!!yfcPerma.author) {
+                    yfcPermaAuthor = yfcPerma.author;
+                }
+
+                if (!!yfcPerma.type) {
+                    yfcPermaType = yfcPerma.type;
+                }
+
+                if (!!yfcPerma.postId) {
+                    yfcPostId = yfcPerma.postId;
+                }
+            }
+
+            var rapidConfig = {
+                'index': {
+                    keys: {
+                        pt: 2,
+                        pd: 'index',
+                        ver: 'miab'
+                    }
+                },
+                'permalink': {
+                    keys: {
+                        pt: 4,
+                        pd: 'post',
+                        pstcat: yfcPermaAuthor,
+                        pct: yfcPermaType, // dynamic
+                        pstaid: yfcPermaPostId,
+                        ver: 'miab'
+                    }
+                },
+                'indextag': {
+                    keys: {
+                        pt: 3,
+                        pd: 'tag',
+                        pstcat: yfcTag,
+                        pstaid: yfcTag,
+                        ver: 'miab'
+                    }
+                }
+            };
+
+            function isEx() {
+                var ycontributors = window.YContributors;
+                var ex = (ycontributors && ycontributors.YFC && undefined === ycontributors.YFC[window.location.hostname]);
+
+                return ex;
+            }
+
+            function initRapid(pageType, brand) {
+                if (typeof pageType === 'undefined') {
+                    pageType = 'index';
+                }
+                if (typeof brand === 'undefined') {
+                    brand = 'yfcauthor';
+                }
+                var keys = rapidConfig[pageType] && rapidConfig[pageType].keys || {};
+                var config = {
+                    spaceid: 1197765654,
+                    client_only: 1,
+                    tracked_mods:['miab-p'],
+                    ywa: {
+                        project_id  : 10001461489262,
+                        host        : 'a.analytics.yahoo.com'
+                    },
+                    ex: isEx()
+                };
+
+                if (!gThemeObj) {
+                    return; // not enough info to start rapid
+                }
+
+                if (keys) {
+                    keys.pcp = brand;
+                    keys.site = window.location.hostname;
+                    config.keys = keys;
+                }
+
+                if (YAHOO && YAHOO.i13n && YAHOO.i13n.Rapid) {
+                    // rapid is a global object, need to namespace it to avoid overwriting
+                    // the version defined on tumblr
+
+                    // needed for ywa
+                    YAHOO.i13n.YWA_CF_MAP = {"_p":20,"ad":58,"authfb":11,"bpos":24,"camp":54,"cat":25,"code":55,"cpos":21,"ct":23,"dcl":26,"dir":108,"domContentLoadedEventEnd":44,"elm":56,"elmt":57,"f":40,"ft":51,"grpt":109,"ilc":39,"itc":111,"loadEventEnd":45,"ltxt":17,"mpos":110,"mrkt":12,"pcp":67,"pct":48,"pd":46,"pkgt":22,"pos":20,"prov":114,"pst":68,"pstcat":47,"pt":13,"rescode":27,"responseEnd":43,"responseStart":41,"rspns":107,"sca":53,"sec":18,"site":42,"slk":19,"sort":28,"t1":121,"t2":122,"t3":123,"t4":124,"t5":125,"t6":126,"t7":127,"t8":128,"t9":129,"tar":113,"test":14,"v":52,"ver":49,"x":50};
+
+                    YAHOO.i13n.YWA_ACTION_MAP = {"click":12,"error":99,"richview":100,"swp":103,"scrl":104,"drag":105,"drop":106,"hvr":115,"secvw":116, "success":135};
+
+                    YAHOO.i13n.YWA_OUTCOME_MAP = {"abuse":51,"close":34,"cmmt":128,"cnct":127,"comment":49,"connect":36,"cueauthview":43,"cueconnectview":46,"cuedcl":61,"cuehpset":50,"cueinfoview":45,"cueloadview":44,"cueswipeview":42,"cue top":48,"dclent":101,"dclitm":102,"drop":22,"dtctloc":118,"end":31,"entitydeclaration":40,"exprt":122,"favorite":56,"fetch":30,"filter":35,"flagcat":131,"flagitm":129,"follow":52,"hpset":27,"imprt":123,"insert":28,"itemdeclaration":37,"lgn":125,"lgo":126,"login":33,"msgview":47,"navigate":25,"open":29,"pa":111,"pgnt":113,"pl":112,"prnt":124,"reauthfb":24,"reply":54,"retweet":55,"rmct":32,"rmloc":120,"rmsvct":117,"sbmt":114,"setlayout":38,"sh":107,"share":23,"slct":121,"slctfltr":133,"slctloc":119,"sort":39,"srch":134,"svct":109,"top":26,"undo":41,"unflagcat":132,"unflagitm":130,"unfollow":53,"unsvct":110};
+
+                    YAHOO.theme = {
+                        rapid: new YAHOO.i13n.Rapid(config)
+                    };
+                }
+            }
+
+            var waitForRapidCount = 0;
+            var waitForRapid = window.setInterval(function () {
+                // local dev box does not have YAHOO.i13n.Rapid
+                if ( ('undefined' === typeof YAHOO) || ('undefined' === typeof YAHOO.i13n) ) {
+                    waitForRapidCount += 1;
+                    // continue to wait
+                    if ('undefined' !== typeof console) {
+                        console.log('waiting for rapid:' + waitForRapidCount);
+                    }
+
+                    if (3 === waitForRapidCount) {
+                        $.getScript('http://l.yimg.com/ss/rapid-3.21.js', function(data, textStatus, jqxhr) {
+
+                            if ('success' === textStatus) {
+                                initRapid(gThemeObj.pageType, gThemeObj.brand);
+                            }
+                        });
+
+                        window.clearInterval(waitForRapid);
+                    }
+                } else {
+                    // on tumblr we should have YAHOO.i13n.Rapid
+                    if ('undefined' !== typeof console) {
+                        console.log('got rapid');
+                    }
+                    initRapid(gThemeObj.pageType, gThemeObj.brand);
+                    window.clearInterval(waitForRapid);
+                }
+            }, 500);
+        });
+        </script>
+    </body>
+</html>
